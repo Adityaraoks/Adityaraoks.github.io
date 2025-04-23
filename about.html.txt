@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Aditya Rao</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-section {
+            padding: 2rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .profile-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bio h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .bio p {
+            margin-bottom: 1rem;
+        }
+        
+        .education, .experience {
+            margin-top: 2rem;
+        }
+        
+        .education h3, .experience h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .edu-item, .exp-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .edu-item h4, .exp-item h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .edu-item p, .exp-item p {
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Aditya Rao</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="about-section">
+            <div class="about-content">
+                <div class="profile">
+                    <img src="/api/placeholder/400/400" alt="Aditya Rao" class="profile-image">
+                </div>
+                <div class="bio">
+                    <h2>About Me</h2>
+                    <p>I am a PhD candidate focusing on machine learning applications in sensor technology. My research interests include signal processing, data fusion, and developing intelligent systems for real-world applications.</p>
+                    
+                    <p>With a background in engineering and computer science, I bring an interdisciplinary approach to solving complex problems in various domains including healthcare, environmental monitoring, and industrial automation.</p>
+                    
+                    <div class="education">
+                        <h3>Education</h3>
+                        <div class="edu-item">
+                            <h4>PhD in Computer Science</h4>
+                            <p>University of Technology, 2020 - Present</p>
+                            <p>Focus: Machine Learning for Sensor Applications</p>
+                        </div>
+                        <div class="edu-item">
+                            <h4>Master of Science in Electrical Engineering</h4>
+                            <p>Institute of Engineering, 2018 - 2020</p>
+                            <p>Thesis: Advanced Signal Processing Techniques</p>
+                        </div>
+                        <div class="edu-item">
+                            <h4>Bachelor of Technology in Electronics</h4>
+                            <p>National Institute of Technology, 2014 - 2018</p>
+                        </div>
+                    </div>
+                    
+                    <div class="experience">
+                        <h3>Professional Experience</h3>
+                        <div class="exp-item">
+                            <h4>Research Assistant</h4>
+                            <p>University of Technology, 2020 - Present</p>
+                            <p>Working on developing machine learning algorithms for sensor applications</p>
+                        </div>
+                        <div class="exp-item">
+                            <h4>Software Engineer</h4>
+                            <p>Tech Solutions Inc., 2018 - 2020</p>
+                            <p>Developed signal processing algorithms for embedded systems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Aditya Rao. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
