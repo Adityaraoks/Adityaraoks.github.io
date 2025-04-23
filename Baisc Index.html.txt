@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Rao</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Aditya Rao</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Aditya Rao</h1>
+                <p class="subtitle">PhD Candidate | Researcher | Engineer</p>
+                <p class="description">Exploring machine learning, signal processing, and their applications in sensor technology.</p>
+            </div>
+        </section>
+
+        <section class="featured-research">
+            <h2>Featured Research</h2>
+            <div class="research-grid">
+                <div class="research-item">
+                    <h3>Machine Learning for Sensor Applications</h3>
+                    <p>Developing advanced algorithms for signal processing and sensor applications in real-world environments.</p>
+                    <a href="research.html#ml-sensors" class="btn">Learn More</a>
+                </div>
+                <div class="research-item">
+                    <h3>Automated Signal Processing</h3>
+                    <p>Creating efficient methods for automated signal processing across various applications.</p>
+                    <a href="research.html#signal-processing" class="btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-publications">
+            <h2>Recent Publications</h2>
+            <ul class="publication-list">
+                <li>
+                    <h3>Machine Learning for Multimodal Sensing</h3>
+                    <p>Journal of Sensor Applications, 2023</p>
+                    <a href="publications.html#pub1">View Details</a>
+                </li>
+                <li>
+                    <h3>Sensor Fusion Techniques in Real-world Applications</h3>
+                    <p>Conference on Sensor Technology, 2022</p>
+                    <a href="publications.html#pub2">View Details</a>
+                </li>
+            </ul>
+            <a href="publications.html" class="btn">View All Publications</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Aditya Rao. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
