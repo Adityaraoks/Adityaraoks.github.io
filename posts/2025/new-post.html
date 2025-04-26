@@ -1,0 +1,133 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Review: Don’t Sweat the Small Stuff – Aditya K S</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    /* Blog post specific styles */
+    .main-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    .meta {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    
+    p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    
+    a {
+      color: #3182ce;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    a:hover {
+      color: #2c5282;
+      text-decoration: underline;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 1.5rem 0;
+      border-radius: 5px;
+    }
+    
+    .caption {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-top: -1rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <a href="../../blogs.html" class="back-link">← Back to Blogs</a>
+    <h1>Book Review: <em>Don’t Sweat the Small Stuff... and It’s All Small Stuff</em> by Richard Carlson</h1>
+    <div class="meta">Aditya Korekallu Srinivasa | April 26, 2025</div>
+    <p>
+      My good friend and mentor, Dr. Girish Jha, recently gifted me <em>Don’t Sweat the Small Stuff... and It’s All Small Stuff</em> by Richard Carlson, and I’m truly grateful for it. I dove into it the same day and finished it in a couple of hours. It’s been about a month since I read it, but I keep returning to its pages every night before bed. This book has genuinely changed how I think about life. When I come across a gem like this, I feel compelled to spread the word. This isn’t a traditional book review—every line in the book is so concise and powerful that summarizing it feels impossible. Instead, think of this as a heartfelt pitch from a delighted reader.
+    </p>
+    <h2>What’s the Key Theme?</h2>
+    <p>
+      The book’s core idea is that we waste too much energy fretting over the small stuff in our daily lives—things that, in the grand scheme, don’t matter. We’ve become so used to worrying about minor issues that we struggle to distinguish them from what truly deserves our attention. This resonates with another favorite of mine, <em>The Subtle Art of Not Giving a F*ck</em> by Mark Manson, which also urges us to focus on what counts. Carlson lists 100 everyday scenarios where we unnecessarily stress ourselves out and offers practical strategies to let go of these minor irritations. I found his advice not just relatable but incredibly actionable.
+    </p>
+    <h2>What Stood Out to Me?</h2>
+    <p>
+      The chapter that hit home hardest—and the one I’ve reread multiple times—is “Choose Your Battles Wisely.” Every day, we face moments where we can either make a big deal out of something or let it slide, realizing it’s not worth the fuss. Too often, we get caught up arguing over trivial matters, turning our days into a cycle of frustration. Life rarely goes as planned, and people don’t always act the way we expect. They have their own personalities, experiences, and ways of doing things, which may clash with ours. But if we fight over every minor issue—like pointing out a small mistake your spouse made—we’ll spend our lives in constant conflict. Carlson’s advice to pause and ask, “Is this worth it?” is simple yet transformative.
+    </p>
+    <h2>Why Should You Read It?</h2>
+    <p>
+      If your goal is to live a peaceful, contented life rather than always being “right,” this book is for you. Each chapter is short—under two pages—and the entire book spans just 180 pages, making it an easy yet impactful read. Having tried Carlson’s strategies myself, I can vouch for their effectiveness. They’ve helped me let go of unnecessary stress and focus on what truly matters.
+    </p>
+    <img src="pic.jpg" alt="Book cover of Don’t Sweat the Small Stuff by Richard Carlson">
+    <div class="caption">A photo of the book, which has become a nightly companion on my bedside table.</div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>
