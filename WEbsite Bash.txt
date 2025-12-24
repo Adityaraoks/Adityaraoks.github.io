@@ -1,0 +1,14 @@
+Git hub codes for the website 
+
+cd /c/Users/nutzer/Adityaraoks.github.io
+git add .
+git commit -m "Update index file with latest changes"
+git push origin main
+
+git add index
+git commit -m "Update index file with latest changes"
+git push origin main
+
+
+
+cd "/c/Users/nutzer/Adityaraoks.github.io"
