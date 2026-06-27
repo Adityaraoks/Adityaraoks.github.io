@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -119,14 +80,13 @@
     
     <h3>Featured Blogs (2025–2016)</h3>
     <ul class="blog-list">
-      <!-- 2026 -->
       <li>
-      <strong>2026</strong>
-      <ul>
-      <li>Aditya K.S. (2026, January 5). <em>Deep Dives: My 2025 Musts – Books and Documentaries </em> <a href="posts/2026/books.html" target="_blank">Read online</a></li>
-      </ul>
+        <strong>2026</strong>
+        <ul>
+          <li>Aditya K.S. (2026, June 27). <em>Me, My Sanity and AI: Some Gibberish</em> <a href="posts/2026/dont_AI.html" target="_blank">Read online</a></li>
+          <li>Aditya K.S. (2026, January 5). <em>Deep Dives: My 2025 Musts – Books and Documentaries </em> <a href="posts/2026/books.html" target="_blank">Read online</a></li>
+        </ul>
       </li>
-      <!-- 2025 -->
       <li>
         <strong>2025</strong>
         <ul>
@@ -134,18 +94,16 @@
           <li>Aditya K.S. (2025, April 26). <em>Book Review: Don’t Sweat the Small Stuff... and It’s All Small Stuff by Richard Carlson</em> <a href="posts/2025/new-post.html" target="_blank">Read online</a></li>
         </ul>
       </li>      
-      <!-- 2024 -->
       <li>
         <strong>2024</strong>
         <ul>
-          <li>Aditya K.S. & Bhuvana N. (2024). <em>Artificial Intelligence in Academia? Don't say Bah! Don't be fooled by the hype, AI is here to stay.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S. &amp; Bhuvana N. (2024). <em>Artificial Intelligence in Academia? Don't say Bah! Don't be fooled by the hype, AI is here to stay.</em> AESA. <a href="#" target="_blank">Read online</a></li>
           <li>Aditya, K. S. (2024, February 24). <em>We have a podcast, but it is not what you think! (A(I)yyo!).</em> <a href="https://adityarao.wordpress.com/2024/02/24/we-have-a-podcast-but-it-is-not-what-you-think-aiyyo/" target="_blank">adityarao.wordpress.com</a></li>
           <li>Aditya, K. S. (2024, January 7). <em>Favorite podcasts.</em> <a href="https://adityarao.wordpress.com/2024/01/07/favorite-podcasts/" target="_blank">adityarao.wordpress.com</a></li>
           <li>Aditya, K. S. (2024, January 1). <em>My 2024 wrap-up: Books.</em> <a href="https://adityarao.wordpress.com/2024/01/01/my-2024-wrap-up-books/" target="_blank">adityarao.wordpress.com</a></li>
           <li>Aditya, K. S. (2024, January 1). <em>Cherished reads from 2023.</em> <a href="https://adityarao.wordpress.com/2024/01/01/cherished-reads-from-2023/" target="_blank">adityarao.wordpress.com</a></li>
         </ul>
       </li>
-      <!-- 2023 -->
       <li>
         <strong>2023</strong>
         <ul>
@@ -157,73 +115,38 @@
           <li>Aditya, K. S. (2023, June 18). <em>Book Review – No Spin: My Autobiography by Shane Warne.</em> <a href="https://adityarao.wordpress.com/2023/06/18/book-review-no-spin-my-autobiography-by-shane-warne/" target="_blank">adityarao.wordpress.com</a></li>
         </ul>
       </li>
-      <!-- 2022 -->
       <li>
         <strong>2022</strong>
         <ul>
-          <li>Bhuvana N. & Aditya K. S. (2022). <em>Systems thinking and sustainable transformation of agriculture.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Bhuvana N. &amp; Aditya K. S. (2022). <em>Systems thinking and sustainable transformation of agriculture.</em> AESA. <a href="#" target="_blank">Read online</a></li>
         </ul>
       </li>
-      <!-- 2021 -->
       <li>
         <strong>2021</strong>
         <ul>
-          <li>Renjini V.R., Aditya K.S., & G.K. Jha (2021). <em>Strategies to achieve self-sufficiency in edible oils.</em> IVPA Souvenir.</li>
-          <li>Aditya K.S. & Bhuvana N. (2021). <em>The Art and Science of Communicating Science to Common People.</em> AESA. <a href="#" target="_blank">Read online</a></li>
-          <li>Girish K. Jha, Renjini V. R., & Aditya K. S. (2021). <em>How India can be 'atmanirbhar' for edible oil production.</em> Down to Earth, Feb 19. <a href="#" target="_blank">Read online</a></li>
-          <li>Aditya K.S. & Girish K. Jha. (2021). <em>Improving effectiveness of agri credit to catalyse growth in agri sector.</em> AGRINEWS. <a href="#" target="_blank">Read online</a></li>
-          <li>Aditya K.S. & Girish K. Jha. (2021). <em>Agricultural Credit for post pandemic economic recovery in India.</em> AGRINEWS. <a href="#" target="_blank">Read online</a></li>
+          <li>Renjini V.R., Aditya K.S., &amp; G.K. Jha (2021). <em>Strategies to achieve self-sufficiency in edible oils.</em> IVPA Souvenir.</li>
+          <li>Aditya K.S. &amp; Bhuvana N. (2021). <em>The Art and Science of Communicating Science to Common People.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Girish K. Jha, Renjini V. R., &amp; Aditya K. S. (2021). <em>How India can be 'atmanirbhar' for edible oil production.</em> Down to Earth, Feb 19. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S. &amp; Girish K. Jha. (2021). <em>Improving effectiveness of agri credit to catalyse growth in agri sector.</em> AGRINEWS. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S. &amp; Girish K. Jha. (2021). <em>Agricultural Credit for post pandemic economic recovery in India.</em> AGRINEWS. <a href="#" target="_blank">Read online</a></li>
         </ul>
       </li>
-      <!-- 2020 -->
       <li>
         <strong>2020</strong>
         <ul>
-          <li>Aditya K.S., Girish K Jha, & Praveen K.V. (2020). <em>Soaring Pulses: Is the Spike in Retail Price of Moong in 2020 a Cause for Concern?</em> The Wire, November 20. <a href="#" target="_blank">Read online</a></li>
-          <li>Aditya K.S., Subash S.P., & Bhuvana N. (2020). <em>Getting smart with Surveys: Using Computers, Tablets or Smart Phones for Household Surveys.</em> AESA. <a href="#" target="_blank">Read online</a></li>
-          <li>Aditya K.S., Bhuvana N., & Subash S.P. (2020). <em>From Utopia to Dystopia; Social Media as the future of agricultural Extension.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S., Girish K Jha, &amp; Praveen K.V. (2020). <em>Soaring Pulses: Is the Spike in Retail Price of Moong in 2020 a Cause for Concern?</em> The Wire, November 20. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S., Subash S.P., &amp; Bhuvana N. (2020). <em>Getting smart with Surveys: Using Computers, Tablets or Smart Phones for Household Surveys.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S., Bhuvana N., &amp; Subash S.P. (2020). <em>From Utopia to Dystopia; Social Media as the future of agricultural Extension.</em> AESA. <a href="#" target="_blank">Read online</a></li>
         </ul>
       </li>
-      <!-- 2019 -->
       <li>
         <strong>2019</strong>
         <ul>
-          <li>Aditya K.S. & Subash S.P. (2019). <em>What, Why, and How to do Impact Assessment.</em> AESA. <a href="#" target="_blank">Read online</a></li>
-          <li>Muthuprasad, Niranjan & Aditya K.S. (2019). <em>Rethinking Policy from a Behavioural Angle: A Case of Nudge.</em> AESA. <a href="#" target="_blank">Read online</a></li>
-          <li>Akriti Sharma, Aditya K S, & Ankur Ojha (2019). <em>Who is going to fund your agricultural start up?</em> Krishi Jagaran, July 11. <a href="#" target="_blank">Read online</a></li>
+          <li>Aditya K.S. &amp; Subash S.P. (2019). <em>What, Why, and How to do Impact Assessment.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Muthuprasad, Niranjan &amp; Aditya K.S. (2019). <em>Rethinking Policy from a Behavioural Angle: A Case of Nudge.</em> AESA. <a href="#" target="_blank">Read online</a></li>
+          <li>Akriti Sharma, Aditya K S, &amp; Ankur Ojha (2019). <em>Who is going to fund your agricultural start up?</em> Krishi Jagaran, July 11. <a href="#" target="_blank">Read online</a></li>
         </ul>
       </li>
-      <!-- 2018 -->
       <li>
         <strong>2018</strong>
         <ul>
-          <li>A.K. Indoria, K.L. Sharma, K. Sammi Reddy, K.V. Praveen, & K.S. Aditya (2018). <em>Recognising Boron in Indian Agriculture.</em> Fertilizer Focus, Nov/Dec. Pp 34-39.</li>
-        </ul>
-      </li>
-      <!-- 2017 -->
-      <li>
-        <strong>2017</strong>
-        <ul>
-          <li>K.S. Aditya, S.P. Subash, K.V. Praveen, M.L. Nithyashree, N. Bhuvana, & Akriti Sharma (2017). <em>A failing safety net? India's minimum support price for agricultural crops.</em> Policy forum. Asia & the Pacific Policy Society, 13 Nov. <a href="#" target="_blank">Read online</a></li>
-          <li>Praveen, K.V. & Aditya, K.S. (2017). <em>Embracing Speciality Fertilisers.</em> International Journal of Current Microbiology and Applied Sciences, 6(12), 3865-3868. <a href="https://doi.org/10.20546/ijcmas.2017.612.446" target="_blank">Read online</a></li>
-          <li>Praveen K V & Aditya K S (2017). <em>Fertilizer policy options for India.</em> Fertilizers Focus, November, 2016.</li>
-          <li>Sukanya Som, P. Venkatesh, K. S. Aditya, R. Burman, & Suresh A. (2017). <em>Feminization of Indian Agriculture; Cover story.</em> Agriculture World, 3(10), 12-22.</li>
-        </ul>
-      </li>
-      <!-- 2016 -->
-      <li>
-        <strong>2016</strong>
-        <ul>
-          <li>Aditya K.S. & Praveen K.V. (2016). <em>Crop Insurance: Challenges and Opportunities.</em> Employment News Weekly, Vol XLI(4): 32.</li>
-          <li>Avinash Kishore & Aditya K. S. (2016, Feb 11). <em>Opportunities for Crop Insurance.</em> India Food Security Portal Blog. <a href="#" target="_blank">Read online</a></li>
-          <li>Aditya K.S. & Subash S.P. (2016, Jan 28). <em>The SDGs and Indian Agriculture.</em> India Food Security Portal Blog. <a href="#" target="_blank">Read online</a></li>
-        </ul>
-      </li>
-    </ul>
-    <p>
-      For more, visit my personal blog: <a href="https://adityarao.wordpress.com" target="_blank">adityarao.wordpress.com</a>
-    </p>
-  </main>
-  <script src="script.js"></script>
-</body>
-</html>
